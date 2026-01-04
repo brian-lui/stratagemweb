@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StrataGem - Competitive Puzzle Duel</title>
+    <meta name="description" content="A competitive puzzle duel where every turn is simultaneous. Out-plan your opponent, then bury them.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="index.html" class="logo">
+                <img src="images/titlelogo.png" alt="StrataGem" class="logo-icon">
+                StrataGem
+            </a>
+            <nav>
+                <a href="#gameplay">Gameplay</a>
+                <a href="#screenshots">Screenshots</a>
+                <a href="#features">Features</a>
+                <a href="#download">Download</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>StrataGem</h1>
+        <p class="tagline">A competitive puzzle duel where every turn is simultaneous — out-plan your opponent, then bury them.</p>
+        <div class="button-group">
+            <a href="#download" class="btn btn-primary">Download Now</a>
+            <a href="#gameplay" class="btn btn-secondary">Watch Gameplay</a>
+        </div>
+    </section>
+
+    <!-- Gameplay Videos Section -->
+    <section id="gameplay" class="gameplay-section">
+        <h2>See It In Action</h2>
+        <div class="gameplay-grid">
+            <div class="gameplay-item">
+                <video autoplay loop muted playsinline>
+                    <source src="images/video1.mp4" type="video/mp4">
+                </video>
+                <div class="caption">Simultaneous turns: commit your drop, then the River advances.</div>
+            </div>
+            <div class="gameplay-item">
+                <video autoplay loop muted playsinline>
+                    <source src="images/video2.mp4" type="video/mp4">
+                </video>
+                <div class="caption">Energy mind-games: Rush into their board or Double Cast for tempo.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshots Carousel -->
+    <section id="screenshots" class="screenshots-section">
+        <h2>Screenshots</h2>
+        <div class="carousel">
+            <button class="carousel-btn carousel-prev" onclick="moveCarousel(-1)">&#10094;</button>
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <img src="images/screenshot1.jpg" alt="Screenshot 1" class="carousel-slide">
+                    <img src="images/screenshot2.jpg" alt="Screenshot 2" class="carousel-slide">
+                    <img src="images/screenshot3.jpg" alt="Screenshot 3" class="carousel-slide">
+                    <img src="images/screenshot4.jpg" alt="Screenshot 4" class="carousel-slide">
+                    <img src="images/screenshot5.jpg" alt="Screenshot 5" class="carousel-slide">
+                    <img src="images/screenshot6.jpg" alt="Screenshot 6" class="carousel-slide">
+                    <img src="images/screenshot7.jpg" alt="Screenshot 7" class="carousel-slide">
+                    <img src="images/screenshot8.jpg" alt="Screenshot 8" class="carousel-slide">
+                </div>
+            </div>
+            <button class="carousel-btn carousel-next" onclick="moveCarousel(1)">&#10095;</button>
+        </div>
+        <div class="carousel-dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+            <span class="dot" onclick="goToSlide(2)"></span>
+            <span class="dot" onclick="goToSlide(3)"></span>
+            <span class="dot" onclick="goToSlide(4)"></span>
+            <span class="dot" onclick="goToSlide(5)"></span>
+            <span class="dot" onclick="goToSlide(6)"></span>
+            <span class="dot" onclick="goToSlide(7)"></span>
+        </div>
+    </section>
+
+    <!-- Feature Highlights -->
+    <section id="features" class="features-section">
+        <h2>Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3>Simultaneous Puzzle Combat</h3>
+                <p>Both players act at once. You're not waiting for turns — you're predicting them.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3>Energy Tactics: Rush / Double Cast</h3>
+                <p>Spend energy to invade their board or take an extra drop. Tempo matters.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"></div>
+                <h3>Characters with Supers + Passives</h3>
+                <p>Each character charges meter differently and bends the rules with a unique kit.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <h2>About StrataGem</h2>
+        <p>
+            StrataGem is a head-to-head puzzle battler: match gems to crack your opponent's Stars and send garbage into their basin. When their board overflows, they lose. It's simple to learn, but the energy system and character kits make it nasty.
+        </p>
+        <p>Original soundtrack by Chel Wong.</p>
+    </section>
+
+    <!-- Download Section -->
+    <section id="download" class="download-section">
+        <h2>Ready to Play?</h2>
+        <p>Download StrataGem and start battling today!</p>
+        <div class="download-options">
+            <a href="https://github.com/brian-lui/Stratagem-compiled/releases/latest/download/Stratagem-win64.zip" class="download-card">
+                <div class="platform">Windows</div>
+                <div class="size">64-bit</div>
+            </a>
+            <a href="https://github.com/brian-lui/Stratagem-compiled/releases/latest/download/Stratagem-macos.zip" class="download-card">
+                <div class="platform">macOS</div>
+                <div class="size">.app bundle</div>
+            </a>
+            <a href="https://github.com/brian-lui/Stratagem-compiled/releases/latest/download/Stratagem-linux.zip" class="download-card">
+                <div class="platform">Linux</div>
+                <div class="size">AppImage</div>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>Hardly Working Games</p>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 8;
+        let autoScrollTimer;
+
+        function updateCarousel() {
+            const track = document.querySelector('.carousel-track');
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+            // Update dots
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function resetAutoScroll() {
+            clearInterval(autoScrollTimer);
+            autoScrollTimer = setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                updateCarousel();
+            }, 5000);
+        }
+
+        function moveCarousel(direction) {
+            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+            updateCarousel();
+            resetAutoScroll();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetAutoScroll();
+        }
+
+        // Start auto-advance every 5 seconds
+        resetAutoScroll();
+    </script>
+</body>
+</html>
