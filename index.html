@@ -37,13 +37,13 @@
     <section id="gameplay" class="gameplay-section">
         <h2>See It In Action</h2>
         <div class="gameplay-grid">
-            <div class="gameplay-item">
+            <div class="gameplay-item" onclick="openVideoModal('images/video1.mp4')">
                 <video autoplay loop muted playsinline>
                     <source src="images/video1.mp4" type="video/mp4">
                 </video>
                 <div class="caption">Simultaneous turns: commit your drop, then the River advances.</div>
             </div>
-            <div class="gameplay-item">
+            <div class="gameplay-item" onclick="openVideoModal('images/video2.mp4')">
                 <video autoplay loop muted playsinline>
                     <source src="images/video2.mp4" type="video/mp4">
                 </video>
@@ -138,6 +138,16 @@
         <p>Hardly Working Games</p>
     </footer>
 
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <button class="video-modal-close" onclick="closeVideoModal()">&times;</button>
+            <video id="modalVideo" controls>
+                <source src="" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
     <script>
         let currentSlide = 0;
         const totalSlides = 8;
@@ -175,6 +185,39 @@
 
         // Start auto-advance every 5 seconds
         resetAutoScroll();
+
+        // Video Modal Functions
+        function openVideoModal(videoSrc) {
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            modalVideo.src = videoSrc;
+            modal.classList.add('active');
+            modalVideo.play();
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const modalVideo = document.getElementById('modalVideo');
+            modalVideo.pause();
+            modalVideo.src = '';
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal when clicking outside the video
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideoModal();
+            }
+        });
     </script>
 </body>
 </html>

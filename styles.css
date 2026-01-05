@@ -167,7 +167,7 @@ nav a:hover {
 .gameplay-item img,
 .gameplay-item video {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
     display: block;
     background: #1a2a3a;
@@ -453,7 +453,7 @@ footer a:hover {
 .carousel-slide {
     min-width: 100%;
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
 }
 
@@ -510,4 +510,66 @@ footer a:hover {
 /* Active Nav Link */
 nav a.nav-active {
     color: #4a9eff;
+}
+
+/* Video Modal */
+.video-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-modal.active {
+    display: flex;
+}
+
+.video-modal-content {
+    position: relative;
+    width: 960px;
+    height: 540px;
+    max-width: 95vw;
+    max-height: 95vh;
+}
+
+.video-modal-content video {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    border-radius: 8px;
+}
+
+.video-modal-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    line-height: 1;
+    transition: color 0.2s;
+}
+
+.video-modal-close:hover {
+    color: #4a9eff;
+}
+
+/* Make gameplay items clickable */
+.gameplay-item {
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.gameplay-item:hover {
+    transform: scale(1.02);
+    border-color: rgba(74, 158, 255, 0.5);
 }
